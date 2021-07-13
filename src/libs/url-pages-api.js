@@ -37,7 +37,7 @@ apiVersions["0.2.0"] = {
     };
 
     const hashObject = b64.encode(JSON.stringify(urlData));
-    return `http://jstrieb.github.io/urlpages/#${hashObject}`;
+    return `https://franco.giordano.ar/urlpages/#${hashObject}`;
   },
 
   /* Return the page data from the object */
@@ -64,9 +64,13 @@ apiVersions["0.0.1"] = {
 
 }
 
+
+const latestApi = apiVersions[LATEST_API_VERSION];
+
 const urlpage = {
   LATEST_API_VERSION,
-  apiVersions
+  apiVersions,
+  latestApi
 }
 
 export default urlpage;

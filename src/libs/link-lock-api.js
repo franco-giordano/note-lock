@@ -102,9 +102,12 @@ import b64 from "./b64";
  
  }
  
+const latestApi = apiVersions[LATEST_API_VERSION];
+
 const linklock = {
   LATEST_API_VERSION,
-  apiVersions
+  apiVersions,
+  latestApi  
 }
 
 export default linklock;
