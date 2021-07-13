@@ -1,12 +1,13 @@
 <script lang="ts">
 	import Button from '@smui/button';
-	import SegmentedButton, { Segment } from '@smui/segmented-button';
+	import Select, { Option } from '@smui/select';
 	import Textfield from '@smui/textfield';
 	// import { Label } from '@smui/common';
 	import Snackbar, { Label } from '@smui/snackbar';
 	import Paper, { Title, Content } from '@smui/paper';
 	import { lockNote } from './functions/utils';
 	import IconButton from '@smui/icon-button';
+	import LayoutGrid, { Cell } from '@smui/layout-grid';
 
 	let clipboardSnackbar;
 
@@ -51,48 +52,56 @@
 </svelte:head>
 
 <style>
-	main {
+	/* main {
 		display: flex;
 		padding: 1em;
-		max-width: 240px;
+		max-width: none;
 		margin: 0 auto;
-	}
+	} */
 
 	@media (min-width: 640px) {
 		main {
 			max-width: none;
 		}
-	}
 
-	* :global(Paper) {
-		margin: 100px;
+		* :global(.paper) {
+			/* width: 33vw; */
+			height: 40vh;
+			/* display: flex */
+		}
 	}
 
 	* :global(.message) {
-		width: 60vw;
-		height: 50vh;
+		width: 100%;
+		height: 100%;
 		font-size: 3rem;
 		color: #2b2b2b;
 		font-style: oblique;
 		text-align: center;
-		margin: auto;
+		/* margin: auto; */
 		display: flex;
+		overflow: hidden;
 		justify-content: center;
 		align-items: center;
 	}
 
 	* :global(.paper) {
-		margin: 10px;
-		display: block;
+		/* width: 33vw; */
+		height: 80vh;
+		/* display: flex */
 	}
 </style>
 
 <main>
 	<!-- svelte-ignore a11y-autofocus -->
+	<LayoutGrid>
+	<Cell spanDevices={{ desktop: 8, tablet: 12, phone: 12 }}>
 	<Paper elevation={6} class="paper" style="background-color: {selectedBackground}; transition: background-color 100ms linear;">
 		<div class="message" autofocus bind:innerHTML={noteValue} contenteditable="true"></div>
 	</Paper>
+	</Cell>
 
+	<Cell spanDevices={{ desktop: 4, tablet: 12, phone: 12 }}>
 	<Paper elevation={6} class="paper">
 		<Title>Configure</Title>
 
@@ -100,19 +109,13 @@
 			<Textfield bind:value={hintValue} label="hint"></Textfield>
 			<Textfield bind:value={passwordValue} label="password" input$type="password"></Textfield>
 			
-			
-			<Button variant="raised" on:click={encrypt}>
-				lock!
-			</Button>
-			
 			<div>
 			<Label>Choose background color:</Label>
-				<SegmentedButton segments={choicesBackground} let:segment singleSelect bind:selected={selectedBackground}>
-				<!-- Note: the `segment` property is required! -->
-				<Segment {segment}>
-				  <Label>{segment}</Label>
-				</Segment>
-			</SegmentedButton>
+			<Select variant="outlined" bind:value={selectedBackground} label="Background color">
+				{#each choicesBackground as oneBg}
+				  <Option value={oneBg}>{oneBg}</Option>
+				{/each}
+			</Select>
 			</div>
 			
 			<Textfield input$disabled="true" variant="filled" bind:value={result} label="Locked Note URL">
@@ -120,8 +123,14 @@
 					content_copy
 				</IconButton>
 			</Textfield>
+
+			<Button variant="raised" on:click={encrypt}>
+				lock!
+			</Button>
 		</Content>
 	</Paper>
+	</Cell>
+	</LayoutGrid>
 
 	<Snackbar bind:this={clipboardSnackbar}>
 		<Label>Copied to clipboard!</Label>
