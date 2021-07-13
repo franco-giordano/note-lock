@@ -59,14 +59,20 @@
 		margin: 0 auto;
 	} */
 
-	@media (min-width: 640px) {
+	* :global(.paper) {
+		/* width: 33vw; */
+		height: 80vh;
+		/* display: flex */
+	}
+
+	@media screen and (max-width: 840px) {
 		main {
 			max-width: none;
 		}
 
 		* :global(.paper) {
 			/* width: 33vw; */
-			height: 40vh;
+			height: 50vh;
 			/* display: flex */
 		}
 	}
@@ -79,16 +85,10 @@
 		font-style: oblique;
 		text-align: center;
 		/* margin: auto; */
-		display: flex;
+		/* display: flex; */
 		overflow: hidden;
 		justify-content: center;
 		align-items: center;
-	}
-
-	* :global(.paper) {
-		/* width: 33vw; */
-		height: 80vh;
-		/* display: flex */
 	}
 </style>
 
