@@ -2,8 +2,9 @@
 	import Button from '@smui/button';
 	import Chip, { Set, Text, LeadingIcon } from '@smui/chips';
 	import Textfield from '@smui/textfield';
-	import Card from '@smui/card';
 	import Paper, { Title, Content } from '@smui/paper';
+	import linklock from "./libs/link-lock-api";
+	import urlpage from "./libs/url-pages-api";
 
 	let noteValue: string = '';
 	let hintValue: string = '';
@@ -11,26 +12,30 @@
  
 	let choices = ['Blue', 'Warm', 'Pale', 'Fire'];
 	let selected = 'Morning';
+
+	function encrypt(note: string, hint:string, password: string) {
+		
+	}
 </script>
 
 <svelte:head>
 	<title>Note Lock</title>
 	<link rel="stylesheet" href="https://unpkg.com/svelte-material-ui/bare.css" />
 	<!-- Material Icons -->
-<link
-rel="stylesheet"
-href="https://fonts.googleapis.com/icon?family=Material+Icons"
-/>
-<!-- Roboto -->
-<link
-rel="stylesheet"
-href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
-/>
-<!-- Roboto Mono -->
-<link
-rel="stylesheet"
-href="https://fonts.googleapis.com/css?family=Roboto+Mono"
-/>
+	<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons"
+	/>
+	<!-- Roboto -->
+	<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,600,700"
+	/>
+	<!-- Roboto Mono -->
+	<link
+	rel="stylesheet"
+	href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+	/>
 </svelte:head>
 
 <style>
