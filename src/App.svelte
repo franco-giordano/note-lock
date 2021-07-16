@@ -8,6 +8,9 @@
 	import { lockNote } from './functions/utils';
 	import IconButton from '@smui/icon-button';
 	import LayoutGrid, { Cell } from '@smui/layout-grid';
+	import Dialog, { Title as TitleDialog,  Content as ContentDialog, Actions } from '@smui/dialog';
+
+	let open;
 
 	let clipboardSnackbar;
 
@@ -21,6 +24,7 @@
 
 	function encrypt() {
 		lockNote(noteValue, passwordValue, hintValue, selectedBackground).then(x => result = x);
+		open = true;
 	}
 
 	function saveToClipboard() {
@@ -95,6 +99,7 @@
 <main>
 	<!-- svelte-ignore a11y-autofocus -->
 	<LayoutGrid>
+		
 	<Cell spanDevices={{ desktop: 8, tablet: 12, phone: 12 }}>
 	<Paper elevation={6} class="paper" style="background-color: {selectedBackground}; transition: background-color 100ms linear;">
 		<div class="message" autofocus bind:innerHTML={noteValue} contenteditable="true"></div>
@@ -118,11 +123,11 @@
 			</Select>
 			</div>
 			
-			<Textfield input$disabled="true" variant="filled" bind:value={result} label="Locked Note URL">
+			<!-- <Textfield input$disabled="true" variant="filled" bind:value={result} label="Locked Note URL">
 				<IconButton class="material-icons" slot="trailingIcon" on:click={saveToClipboard}>
 					content_copy
 				</IconButton>
-			</Textfield>
+			</Textfield> -->
 
 			<Button variant="raised" on:click={encrypt}>
 				lock!
@@ -136,3 +141,27 @@
 		<Label>Copied to clipboard!</Label>
 	</Snackbar>
 </main>
+
+<Dialog
+  bind:open
+  aria-labelledby="simple-title"
+  aria-describedby="simple-content"
+>
+  <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+  <TitleDialog id="simple-title">Dialog Title</TitleDialog>
+  <ContentDialog id="simple-content">Super awesome dialog body text?
+	<Textfield input$disabled="true" variant="filled" bind:value={result} label="Locked Note URL">
+		<IconButton class="material-icons" slot="trailingIcon" on:click={saveToClipboard}>
+			content_copy
+		</IconButton>
+	</Textfield>
+  </ContentDialog>
+  <Actions>
+    <Button on:click={() => {}}>
+      <Label>No</Label>
+    </Button>
+    <Button on:click={() => {}}>
+      <Label>Yes</Label>
+    </Button>
+  </Actions>
+</Dialog>
