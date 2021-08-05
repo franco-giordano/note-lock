@@ -13,9 +13,9 @@
 		Content as ContentDialog,
 		Actions,
 	} from "@smui/dialog";
-	import Tooltip, { Wrapper } from "@smui/tooltip";
 	import Icon from "@smui/textfield/icon";
 	import HelperText from "@smui/textfield/helper-text/index";
+	import TopAppBar, { Row, Section } from "@smui/top-app-bar";
 
 	let open;
 
@@ -73,6 +73,18 @@
 		href="https://fonts.googleapis.com/css?family=Roboto+Mono"
 	/>
 </svelte:head>
+<TopAppBar variant="static">
+	<Row>
+		<Section>
+			<Title>Note Lock</Title>
+		</Section>
+		<Section align="end" toolbar style="margin-top: 8px;">
+			<IconButton class="material-icons" aria-label="Information"
+				>info</IconButton
+			>
+		</Section>
+	</Row>
+</TopAppBar>
 
 <main>
 	<!-- svelte-ignore a11y-autofocus -->
@@ -174,9 +186,11 @@
 	<!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
 	<TitleDialog id="simple-title">Note Lock created</TitleDialog>
 	<ContentDialog id="simple-content">
-		When using the link below, a prompt will appear with the following hint:
-		"{hintValue}"
+		{hintValue
+			? `When using the link below, a prompt will appear with the following hint: ${hintValue}`
+			: ""}
 		<div>
+			Share your locked link:
 			<Textfield
 				input$disabled="true"
 				variant="filled"
@@ -211,7 +225,7 @@
 
 	* :global(.paper) {
 		/* width: 33vw; */
-		height: 80vh;
+		height: 75vh;
 		/* display: flex */
 	}
 
@@ -226,7 +240,7 @@
 
 		* :global(.paper) {
 			/* width: 33vw; */
-			height: 50vh;
+			height: 55vh;
 			/* display: flex */
 		}
 	}
@@ -243,5 +257,18 @@
 		overflow-x: hidden;
 		justify-content: center;
 		align-items: center;
+	}
+
+	* :global(.top-app-bar-container) {
+		max-width: 480px;
+		width: 100%;
+		height: 320px;
+		border: 1px solid
+			var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
+		margin: 0 18px 18px 0;
+		background-color: var(--mdc-theme-background, #fff);
+
+		overflow: auto;
+		display: inline-block;
 	}
 </style>
