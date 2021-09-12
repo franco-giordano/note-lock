@@ -15,7 +15,11 @@
 	} from "@smui/dialog";
 	import Icon from "@smui/textfield/icon";
 	import HelperText from "@smui/textfield/helper-text/index";
-	import TopAppBar, { Row, Section } from "@smui/top-app-bar";
+	import TopAppBar, {
+		Row,
+		Section,
+		Title as AppBarTitle,
+	} from "@smui/top-app-bar";
 
 	let open;
 
@@ -76,12 +80,16 @@
 <TopAppBar variant="static">
 	<Row>
 		<Section>
-			<Title>Note Lock</Title>
+			<AppBarTitle>Note Lock</AppBarTitle>
 		</Section>
 		<Section align="end" toolbar style="margin-top: 8px;">
-			<IconButton class="material-icons" aria-label="Information"
-				>info</IconButton
+			<IconButton
+				class="material-icons"
+				aria-label="Information"
+				disabled
 			>
+				info
+			</IconButton>
 		</Section>
 	</Row>
 </TopAppBar>
