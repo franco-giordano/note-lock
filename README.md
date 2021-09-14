@@ -1,105 +1,61 @@
-*Looking for a shareable component template? Go here --> [sveltejs/component-template](https://github.com/sveltejs/component-template)*
 
----
+<p align="center">
+    <!-- <img alt="mytag" height="128" src="./assets/icon.png"> -->
+    <h1 align="center">Note Lock</h1>
+</p>
 
-# svelte app
+<p align="center">
+  <a aria-label="Website" href="https://f.gior.ar/note-lock" target="_blank">
+    <img alt="Website" src="https://img.shields.io/website?down_color=red&down_message=offline&style=flat-square&up_message=up&url=https%3A%2F%2Ffranco.giordano.ar%2Fnote-lock" />
+  </a>
+  <a aria-label="License" href="https://github.com/franco-giordano/note-lock/blob/main/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/franco-giordano/note-lock?style=flat-square" target="_blank" />
+  </a>
+</p>
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+<p align="center">
+Send encrypted notes without any server! Your encrypted message lives only in the URL, and is never sent anywhere.
+</p>
+<p align="center">
+Encryption and render methods designed by <a href="https://github.com/jstrieb/link-lock">jstrieb/link-lock</a> and <a href="https://github.com/jstrieb/urlpages">jstrieb/urlpages</a>. Built with Svelte.
+</p>
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+## Showcase
+First, enter your message, an optional hint and password:
+![First step](./assets/step1.png)
 
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
+Click in Lock! and copy your encrypted message (URL):
+![Second step](./assets/step2.png)
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+Send the URL. The recipient will open it and find the password prompt: 
+![Third step](./assets/step3.png)
 
+After using the right password, you will find the message!
+![Fourth step](./assets/step4.png)
 
-## Get started
+Remember: your message is never sent anywhere, encryption+decryption happens all client-side. There is no backend, this project is just a static HTML!
 
-Install the dependencies...
+## Next steps
 
-```bash
-cd svelte-app
-npm install
-```
+Some extra desired features/fixes are:
+- Offer a shortened URL for easy sharing (i.e. TinyUrl)
+- Generate a QR code for the (shortened) URL
+- Add Information button explaining project goals
+- Better background color options
+- Create a logo for the project
 
-...then start [Rollup](https://rollupjs.org):
+## Contribute
 
-```bash
-npm run dev
-```
+1. Clone repo
+2. Install npm packages: `npm install`
+3. Start the server (with hot reloading): `npm run dev`
+4. Navigate to [localhost:5000](http://localhost:5000)
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+<!-- 
+## Next steps
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+You can see our to-do list in [this project](https://github.com/franco-giordano/note-lock). Feel free to work on any of these issues! -->
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
+## License
 
-## Building and running in production mode
-
-To create an optimised version of the app:
-
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+MIT
