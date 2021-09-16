@@ -1,6 +1,6 @@
 
 <p align="center">
-    <img alt="notelock" height="128" src="./assets/note-lock-logo.png">
+    <img alt="notelock" height="100" src="./assets/note-lock-logo.png">
     <h1 align="center">Note Lock</h1>
 </p>
 
@@ -21,17 +21,17 @@ Encryption and render methods designed by <a href="https://github.com/jstrieb/li
 </p>
 
 ## Showcase
-First, enter your message, an optional hint and password:
-![First step](./assets/step1.png)
+First, enter your message, an optional hint and password. Click in Lock! and copy your encrypted message (URL): <br>
 
-Click in Lock! and copy your encrypted message (URL):
-![Second step](./assets/step2.png)
+<p align="center">
+<img alt="first step" width="49%" src="./assets/step1.png"><img alt="second step" width="49%" src="./assets/step2.png">
 
-Send the URL. The recipient will open it and find the password prompt: 
-![Third step](./assets/step3.png)
+</p>
 
-After using the right password, you will find the message!
-![Fourth step](./assets/step4.png)
+Send the URL. The recipient will open it and find the password prompt. After using the right password, you will find the message!
+<p align="center">
+<img alt="third step" width="49%" src="./assets/step3.png"><img alt="last step" width="49%" src="./assets/step4.png">
+</p>
 
 Remember: your message is never sent anywhere, encryption+decryption happens all client-side. There is no backend, this project is just a static HTML!
 
