@@ -1,6 +1,6 @@
 
 <p align="center">
-    <!-- <img alt="mytag" height="128" src="./assets/icon.png"> -->
+    <img alt="notelock" height="128" src="./assets/note-lock-logo.png">
     <h1 align="center">Note Lock</h1>
 </p>
 
