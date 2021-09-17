@@ -23,6 +23,7 @@
 	import SimpleDialog from "./components/SimpleDialog.svelte";
 
 	let openDialog: boolean = false;
+	let openInformationDialog: boolean = false;
 
 	let clipboardSnackbar;
 
@@ -90,11 +91,11 @@
 			/>
 			<AppBarTitle style="padding-left: 5px">Note Lock</AppBarTitle>
 		</Section>
-		<Section align="end" toolbar style="margin-top: 8px;">
+		<Section align="end" toolbar style="margin-top: 11px;">
 			<IconButton
 				class="material-icons"
 				aria-label="Information"
-				disabled
+				on:click={() => (openInformationDialog = true)}
 			>
 				info
 			</IconButton>
@@ -183,7 +184,7 @@
 </main>
 
 <SimpleDialog bind:openBind={openDialog}>
-	<TitleDialog id="title-dialog">Note Lock created</TitleDialog>
+	<TitleDialog id="title-dialog">🔒 Note Lock created</TitleDialog>
 	<ContentDialog id="content-dialog">
 		{hintValue
 			? `When using the link below, a prompt will appear with the following hint: ${hintValue}`
@@ -206,6 +207,19 @@
 				</IconButton>
 			</Textfield>
 		</div>
+	</ContentDialog>
+</SimpleDialog>
+
+<SimpleDialog bind:openBind={openInformationDialog}>
+	<TitleDialog id="title-dialog">ℹ️ About Note Lock</TitleDialog>
+	<ContentDialog id="content-dialog">
+		Create encrypted notes stored in URLs! Note Lock provides an easy and secure way to share secret messages without storing them anywhere.
+		<br> <br>
+		Site created by Franco Giordano.
+		<br> <br>
+		Encryption and render methods designed by jstrieb/link-lock and jstrieb/urlpages.
+		<br> <br>
+		MIT License.
 	</ContentDialog>
 </SimpleDialog>
 
