@@ -13,4 +13,6 @@ export const DEFAULT_CSS = `.box
 }
 `;
 
-export const BASE_URL: string = "https://f.gior.ar/link-lock"
+export const BASE_URL: string = "https://f.gior.ar/link-lock";
+
+export const URL_PAGES_BASE_URL: string = 'https://franco.giordano.ar/urlpages';

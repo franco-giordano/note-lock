@@ -4,14 +4,13 @@
 	import Textfield from "@smui/textfield";
 	// import { Label } from '@smui/common';
 	import Snackbar, { Label } from "@smui/snackbar";
-	import Paper, { Title, Content } from "@smui/paper";
+	import { Title } from "@smui/paper";
 	import { lockNote } from "./functions/utils";
 	import IconButton from "@smui/icon-button";
 	import LayoutGrid, { Cell } from "@smui/layout-grid";
-	import Dialog, {
+	import {
 		Title as TitleDialog,
 		Content as ContentDialog,
-		Actions,
 	} from "@smui/dialog";
 	import Icon from "@smui/textfield/icon";
 	import HelperText from "@smui/textfield/helper-text/index";
@@ -20,8 +19,10 @@
 		Section,
 		Title as AppBarTitle,
 	} from "@smui/top-app-bar";
+	import CellWithPaper from "./components/CellWithPaper.svelte";
+	import SimpleDialog from "./components/SimpleDialog.svelte";
 
-	let open;
+	let openDialog: boolean = false;
 
 	let clipboardSnackbar;
 
@@ -44,7 +45,7 @@
 		lockNote(noteValue, passwordValue, hintValue, selectedBackground).then(
 			(x) => (result = x)
 		);
-		open = true;
+		openDialog = true;
 	}
 
 	function saveToClipboard() {
@@ -77,10 +78,17 @@
 		href="https://fonts.googleapis.com/css?family=Roboto+Mono"
 	/>
 </svelte:head>
+
 <TopAppBar variant="static">
 	<Row>
 		<Section>
-			<AppBarTitle>Note Lock</AppBarTitle>
+			<img
+				style="padding-left: 20px;"
+				src="assets/logo-white.png"
+				height="31px"
+				alt="Note Lock Logo"
+			/>
+			<AppBarTitle style="padding-left: 5px">Note Lock</AppBarTitle>
 		</Section>
 		<Section align="end" toolbar style="margin-top: 8px;">
 			<IconButton
@@ -97,88 +105,76 @@
 <main>
 	<!-- svelte-ignore a11y-autofocus -->
 	<LayoutGrid>
-		<Cell spanDevices={{ desktop: 8, tablet: 12, phone: 12 }}>
-			<Paper
-				elevation={6}
-				class="paper"
-				style="background-color: {selectedBackground}; transition: background-color 100ms linear;"
-			>
-				<div
-					class="message"
-					autofocus
-					bind:innerHTML={noteValue}
-					contenteditable="true"
-				/>
-			</Paper>
-		</Cell>
+		<CellWithPaper
+			spanDevices={{ desktop: 8, tablet: 12, phone: 12 }}
+			customStyle="background-color: {selectedBackground}; transition: background-color 100ms linear;"
+		>
+			<div
+				class="message"
+				autofocus
+				bind:innerHTML={noteValue}
+				contenteditable="true"
+			/>
+		</CellWithPaper>
 
-		<Cell spanDevices={{ desktop: 4, tablet: 12, phone: 12 }}>
-			<Paper elevation={6} class="paper">
-				<Title>Configure</Title>
+		<CellWithPaper spanDevices={{ desktop: 4, tablet: 12, phone: 12 }}>
+			<Title>Configure</Title>
 
-				<LayoutGrid>
-					<Cell span={12}>
-						<Textfield
-							bind:value={hintValue}
-							class="full-width"
-							label="Hint"
+			<LayoutGrid>
+				<Cell span={12}>
+					<Textfield
+						bind:value={hintValue}
+						class="full-width"
+						label="Hint"
+					>
+						<Icon class="material-icons" slot="leadingIcon"
+							>lightbulb</Icon
 						>
-							<Icon class="material-icons" slot="leadingIcon"
-								>lightbulb</Icon
-							>
-							<HelperText slot="helper"
-								>This hint will appear next to the password
-								prompt</HelperText
-							>
-						</Textfield>
-					</Cell>
-					<Cell span={12}
-						><Textfield
-							class="full-width"
-							bind:value={passwordValue}
-							required
-							label="Password"
-							input$type="password"
+						<HelperText slot="helper"
+							>This hint will appear next to the password prompt</HelperText
 						>
-							<Icon class="material-icons" slot="leadingIcon"
-								>vpn_key</Icon
-							>
-							<HelperText slot="helper"
-								>The required password to unlock the note</HelperText
-							></Textfield
+					</Textfield>
+				</Cell>
+				<Cell span={12}>
+					<Textfield
+						class="full-width"
+						bind:value={passwordValue}
+						required
+						label="Password"
+						input$type="password"
+					>
+						<Icon class="material-icons" slot="leadingIcon"
+							>vpn_key</Icon
 						>
-					</Cell>
+						<HelperText slot="helper"
+							>The required password to unlock the note</HelperText
+						></Textfield
+					>
+				</Cell>
 
-					<Cell span={12}>
-						<Select
-							variant="outlined"
-							bind:value={selectedBackground}
-							label="Background color"
-							class="full-width"
-						>
-							{#each choicesBackground as oneBg}
-								<Option value={oneBg}>{oneBg}</Option>
-							{/each}
-						</Select>
-					</Cell>
+				<Cell span={12}>
+					<Select
+						variant="outlined"
+						bind:value={selectedBackground}
+						label="Background color"
+						class="full-width"
+					>
+						{#each choicesBackground as oneBg}
+							<Option value={oneBg}>{oneBg}</Option>
+						{/each}
+					</Select>
+				</Cell>
 
-					<Cell span={12}>
-						<Button
-							disabled={passwordValue === ""}
-							class="full-width"
-							variant="raised"
-							on:click={encrypt}>lock!</Button
-						>
-					</Cell>
-				</LayoutGrid>
-
-				<!-- <Textfield input$disabled="true" variant="filled" bind:value={result} label="Locked Note URL">
-				<IconButton class="material-icons" slot="trailingIcon" on:click={saveToClipboard}>
-					content_copy
-				</IconButton>
-			</Textfield> -->
-			</Paper>
-		</Cell>
+				<Cell span={12}>
+					<Button
+						disabled={passwordValue === ""}
+						class="full-width"
+						variant="raised"
+						on:click={encrypt}>lock!</Button
+					>
+				</Cell>
+			</LayoutGrid>
+		</CellWithPaper>
 	</LayoutGrid>
 
 	<Snackbar bind:this={clipboardSnackbar}>
@@ -186,14 +182,9 @@
 	</Snackbar>
 </main>
 
-<Dialog
-	bind:open
-	aria-labelledby="simple-title"
-	aria-describedby="simple-content"
->
-	<!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
-	<TitleDialog id="simple-title">Note Lock created</TitleDialog>
-	<ContentDialog id="simple-content">
+<SimpleDialog bind:openBind={openDialog}>
+	<TitleDialog id="title-dialog">Note Lock created</TitleDialog>
+	<ContentDialog id="content-dialog">
 		{hintValue
 			? `When using the link below, a prompt will appear with the following hint: ${hintValue}`
 			: ""}
@@ -216,27 +207,9 @@
 			</Textfield>
 		</div>
 	</ContentDialog>
-	<Actions>
-		<Button on:click={() => {}}>
-			<Label>Close</Label>
-		</Button>
-	</Actions>
-</Dialog>
+</SimpleDialog>
 
 <style>
-	/* main {
-		display: flex;
-		padding: 1em;
-		max-width: none;
-		margin: 0 auto;
-	} */
-
-	* :global(.paper) {
-		/* width: 33vw; */
-		height: 75vh;
-		/* display: flex */
-	}
-
 	* :global(.full-width) {
 		width: 100%;
 	}
@@ -278,5 +251,11 @@
 
 		overflow: auto;
 		display: inline-block;
+	}
+
+	* :global(.paper) {
+		/* width: 33vw; */
+		height: 75vh;
+		/* display: flex */
 	}
 </style>

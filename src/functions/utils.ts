@@ -5,6 +5,10 @@ import {DEFAULT_CSS, BASE_URL} from './constants';
 
 
 async function lockLink(url : string, passwd : string, hint : string) {
+    if (!window.crypto.subtle) {
+        return BASE_URL + "/#CRYPTO_NOT_FOUND";
+    }
+
     const api = linklock.latestApi;
 
     const salt = await api.randomSalt();

@@ -8,6 +8,7 @@
  */
 
 import b64 from "./b64";
+import { URL_PAGES_BASE_URL } from "../functions/constants";
 
 
 /*******************************************************************************
@@ -37,7 +38,7 @@ apiVersions["0.2.0"] = {
     };
 
     const hashObject = b64.encode(JSON.stringify(urlData));
-    return `https://franco.giordano.ar/urlpages/#${hashObject}`;
+    return URL_PAGES_BASE_URL + `/#${hashObject}`;
   },
 
   /* Return the page data from the object */
