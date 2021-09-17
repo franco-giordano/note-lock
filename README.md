@@ -42,7 +42,7 @@ Some extra desired features/fixes are:
 - Generate a QR code for the (shortened) URL
 - Add Information button explaining project goals
 - Better background color options
-- Create a logo for the project
+- ... and more!
 
 ## Contribute
 
