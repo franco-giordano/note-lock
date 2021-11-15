@@ -21,6 +21,7 @@
 	} from "@smui/top-app-bar";
 	import CellWithPaper from "./components/CellWithPaper.svelte";
 	import SimpleDialog from "./components/SimpleDialog.svelte";
+	import LockCreatedDialog from "./components/LockCreatedDialog.svelte";
 
 	let openDialog: boolean = false;
 	let openInformationDialog: boolean = false;
@@ -183,7 +184,7 @@
 	</Snackbar>
 </main>
 
-<SimpleDialog bind:openBind={openDialog}>
+<LockCreatedDialog bind:openBind={openDialog} longUrl={result}>
 	<TitleDialog id="title-dialog">🔒 Note Lock created</TitleDialog>
 	<ContentDialog id="content-dialog">
 		{hintValue
@@ -208,17 +209,22 @@
 			</Textfield>
 		</div>
 	</ContentDialog>
-</SimpleDialog>
+</LockCreatedDialog>
 
 <SimpleDialog bind:openBind={openInformationDialog}>
 	<TitleDialog id="title-dialog">ℹ️ About Note Lock</TitleDialog>
 	<ContentDialog id="content-dialog">
-		Create encrypted notes stored in URLs! Note Lock provides an easy and secure way to share secret messages without storing them anywhere.
-		<br> <br>
-		Site created by Franco Giordano.
-		<br> <br>
+		Create encrypted notes stored in URLs! Note Lock provides an easy and
+		secure way to share secret messages without storing them anywhere.
+		<br /> <br />
+		<a
+			href="https://github.com/franco-giordano/note-lock"
+			target="_blank"
+			rel="noopener noreferrer">Open-Source project, created by Franco Giordano.</a
+		>
+		<br /> <br />
 		Encryption and render methods designed by jstrieb/link-lock and jstrieb/urlpages.
-		<br> <br>
+		<br /> <br />
 		MIT License.
 	</ContentDialog>
 </SimpleDialog>
